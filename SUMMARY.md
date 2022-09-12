@@ -48,6 +48,6 @@
 * [Dropbox](advanced-systems/dropbox.md)
 * [Instagram](advanced-systems/instagram.md)
 * [Messenger](advanced-systems/messenger.md)
-* [Twitter](advanced-systems/twitter.md)
+* [Twitter](advanced-systems/page-3.md)
 * [Uber](advanced-systems/uber.md)
 * [Youtube](advanced-systems/youtube.md)

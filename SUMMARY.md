@@ -45,4 +45,9 @@
 
 ## Advanced Systems
 
-* [Page 3](advanced-systems/page-3.md)
+* [Dropbox](advanced-systems/dropbox.md)
+* [Instagram](advanced-systems/instagram.md)
+* [Messenger](advanced-systems/messenger.md)
+* [Twitter](advanced-systems/twitter.md)
+* [Uber](advanced-systems/uber.md)
+* [Youtube](advanced-systems/youtube.md)

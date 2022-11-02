@@ -4,13 +4,13 @@
 
 {% embed url="https://github.com/Ren0503/system-design/raw/master/concepts/latency/assets/latency.svg" %}
 
-Khi quan sát các hệ thống ống nước trong thế giới, ta có thể thấy tốc độ của dòng nước chảy ra từ đường ống không đồng nhất, đôi khi nó chảy rất nhanh và đôi khi cũng rất chậm. Khái niệm này có phần tương đồng với một khái niệm trong hệ thống máy tính là **độ trễ**.
+Khi quan sát các hệ thống ống nước ở thế giới thực, ta có thể thấy tốc độ của dòng nước chảy ra từ đường ống không đồng nhất, đôi khi nó chảy rất nhanh và đôi khi cũng rất chậm. Khái niệm này có phần tương đồng với một khái niệm trong hệ thống máy tính gọi là **độ trễ**.
 
-Trong ví dụ trên độ trễ xác định tốc độ nước trong đường ống có thể được truyền từ đường ống này sang đường ống khác. Còn với thuật ngữ máy tính, nó xác định tốc độ truyền dữ liệu từ server đến client và ngược lại. Đây là thước đo trực tiếp cho hiệu suất hệ thống, tức là độ trễ càng thấp hiệu suất càng cao.
+Nếu như ở thế giới thực, độ trễ xác định tốc độ nước trong đường ống có thể được truyền từ đường ống này sang đường ống khác. Thì với các hệ thống máy tính, nó xác định tốc độ truyền dữ liệu từ server đến client và ngược lại. Đây là thước đo trực tiếp cho hiệu suất hệ thống, tức là độ trễ càng thấp hiệu suất càng cao.
 
 Bài viết này sẽ tập trung vào kiến thức xoay quanh khái niệm về độ trễ, cách nó tác động đến hiệu suất của hệ thống và những biện pháp nào nên được áp dụng để cải thiện độ trễ của hệ thống.
 
-### Ý nghĩa và định nghĩa độ trễ
+### Định nghĩa và vai trò của độ trễ
 
 > Độ trễ là khoảng thời gian bắt đầu từ khi client gửi yêu cầu đến server cho đến khi server gửi phản hồi trở lại client, tức là thời gian khứ hồi giữa client và server.
 
@@ -34,11 +34,11 @@ Bạn có thể khởi động đồng hồ bấm giờ ở bước đầu tiên
 
 Bây giờ, đã hiểu khái niệm về độ trễ rồi, nhưng bạn có biết độ trễ đến từ đâu không?
 
-Độ trễ trong mạng phụ thuộc vào các tham số khác nhau và chúng có ảnh hưởng lớn đến việc xác định giá trị của nó. Một trong những yếu tố chính gây ra độ trễ là các lệnh gọi đi. Như trong ví dụ trước về thêm vào giỏ hàng, khi bạ click vào button trên trình duyệt, yêu cầu sẽ chuyển đến một số server ở phía backend, server này lại gọi nhiều dịch vụ nội bộ để tính toán (song song hoặc tuần tự) và sau đó chờ phản hồi hoặc tổng hợp chúng. Tất cả điều này làm tăng thêm độ trễ của cuộc gọi. Tuy nhiên, độ trễ chủ yếu được gây ra bởi các yếu tố sau:
+Độ trễ trong mạng phụ thuộc vào các tham số khác nhau và chúng có ảnh hưởng lớn đến việc xác định giá trị của nó. Một trong những yếu tố chính gây ra độ trễ là các lệnh gọi đi. Như trong ví dụ trước về thêm vào giỏ hàng, khi bạn click vào button trên trình duyệt, yêu cầu sẽ chuyển đến một số server ở phía backend, server này lại gọi nhiều dịch vụ nội bộ để tính toán (song song hoặc tuần tự) và sau đó chờ phản hồi hoặc tổng hợp chúng. Tất cả điều này làm tăng thêm độ trễ của cuộc gọi. Tuy nhiên, độ trễ chủ yếu được gây ra bởi các yếu tố sau:
 
 * **Phương tiện truyền tải**: Phương tiện truyền tải là đường dẫn vật lý giữa điểm đầu và điểm cuối. Độ trễ của hệ thống phụ thuộc vào loại phương tiện được sử dụng để truyền yêu cầu. Các phương tiện truyền dẫn như WAN và Cáp quang được sử dụng rộng rãi, nhưng mỗi phương tiện đều có những hạn chế, ảnh hưởng đến độ trễ.
 * **Đường truyền**: Nó được đề cập đến khoảng thời gian cần thiết để một gói tin truyền từ nơi này sang nơi khác. Độ trễ của hệ thống phụ thuộc nhiều vào khoảng cách giữa các nút giao tiếp. Các nút nằm càng xa thì độ trễ càng nhiều.
-* **Bộ định tuyến**: Bộ định tuyến là một thành phần thiết yếu trong giao tiếp mạng và mất một khoảng thời gian để phân tích thông tin tiêu đề của một gói tin. Độ trễ phụ thuộc vào mức độ hiệu quả của bộ định tuyến xử lý yêu cầu. Bước nhảy từ bộ định tuyến đến bộ định tuyến khác làm tăng độ trễ của hệ thống.
+* **Bộ định tuyến**: Bộ định tuyến là một thành phần thiết yếu trong giao tiếp mạng và mất một khoảng thời gian để phân tích thông tin tiêu đề của một gói tin. Độ trễ phụ thuộc vào mức độ hiệu quả của bộ định tuyến xử lý yêu cầu. Quá trình truyền tải từ bộ định tuyến đến bộ định tuyến khác làm tăng độ trễ của hệ thống.
 * **Độ trễ của bộ nhớ**: Độ trễ của hệ thống cũng tùy thuộc vào loại hệ thống lưu trữ được sử dụng, vì có thể mất một khoảng thời gian để xử lý và trả lại dữ liệu. Do đó việc truy cập dữ liệu được lưu trữ có thể làm tăng độ trễ của hệ thống.
 
 ### Cách đo Độ trễ?
@@ -63,7 +63,7 @@ Là một nhà phát triển, độ trễ cũng có thể được tối ưu hó
 
 * Các thuật toán không hiệu quả là nguồn gốc của độ trễ rõ ràng nhất trong mã. Cần tránh các vòng lặp không cần thiết hoặc các phép toán lồng vào nhau.&#x20;
 * Sử dụng các mẫu thiết kế tránh khoá vì khoá đa luồng gây ra độ trễ.&#x20;
-* Sử dụng mô hình lập trình không đồng bộ để sử dụng tài nguyên phần cứng tốt hơn vì các hoạt động bloking gây ra thời gian chờ lâu.
+* Sử dụng mô hình lập trình không đồng bộ để sử dụng tài nguyên phần cứng tốt hơn vì các hoạt động blocking gây ra thời gian chờ lâu.
 * Hàng đợi không bị giới hạn nghe có vẻ dị thường, nhưng những hàng đợi này dẫn đến việc sử dụng tài nguyên phần cứng không giới hạn, điều mà không máy tính nào có được. Việc giới hạn độ sâu hàng đợi và cung cấp áp lực ngược thường dẫn đến thời gian chờ code của bạn ít hơn, và độ trễ có thể dự đoán được nhiều hơn.
 
 ### Kết luận

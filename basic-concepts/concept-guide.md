@@ -4,16 +4,16 @@
 
 {% embed url="https://github.com/Ren0503/system-design/raw/master/concepts/assets/background.svg" %}
 
-Thiết kế hệ thống, một chủ đề yêu thích trong các cuộc phỏng vấn ở các công ty công nghệ lớn. Nó giúp người phỏng vấn đánh giá được kiến thức và khả năng giải quyết vấn đề quy mô lớn của các ứng viên.
+Thiết kế hệ thống là một chủ đề yêu thích trong các cuộc phỏng vấn ở các công ty công nghệ lớn. Nó giúp người phỏng vấn đánh giá được kiến thức và khả năng giải quyết vấn đề quy mô lớn của các ứng viên.
 
 Series bài viết này sẽ nói về các khái niệm cơ bản (và nâng cao một chút) liên quan đến thiết kế hệ thống. Hiểu rõ các khái niệm này sẽ giúp bạn nhìn nhận được các cấp độ rõ ràng trong thiết kế hệ thống và giải quyết các vấn đề của nó.
 
 ### Thiết kế hệ thống là gì?
 
-Thiết kế hệ thống là các công việc xây dựng, thiết kế từ các thành phần nhỏ đến một hệ thống hoàn chỉnh về các dịch vụ và chức năng. Trong quá trình thiết kế, cần cân nhắc nhiều sự lựa chọn hay có thể gọi là sự đánh đổi giữa hiệu suất hệ thống và độ phức tạp của nó. Người thiết kế cần phải:
+Thiết kế hệ thống là các công việc xây dựng, thiết kế từ các thành phần nhỏ đến một hệ thống hoàn chỉnh về các dịch vụ và chức năng phù hợp với các yêu cầu nghiệp vụ nhất định. Trong quá trình thiết kế, cần cân nhắc nhiều sự lựa chọn hay có thể gọi là sự đánh đổi giữa hiệu suất hệ thống và độ phức tạp của nó. Người thiết kế cần phải:
 
 * Hiểu rõ các nguyên tắc, định lý phổ biến, ưu nhược điểm của chúng từ đó có thể đưa ra quyết định đúng đắn.
-* Cần có kiến thức về tất cả khái niệm quan trọng thường gặp trong thiết kế hệ thống. Ví dụ như khả năng mở rộng (ngang và dọc), bộ nhớ đệm, cân bằng tải, giao thức mạng, cơ sở dữ liệu,... và nhiều thứ khác nữa.
+* Cần có kiến thức về tất cả khái niệm quan trọng thường gặp trong thiết kế hệ thống. Ví dụ như khả năng mở rộng (theo chiều ngang ngang và dọc), bộ nhớ đệm, cân bằng tải, giao thức mạng, cơ sở dữ liệu,... và nhiều thứ khác nữa.
 
 Tương tự, chúng ta cần cân nhắc sự cân bằng khi xem xét các chức năng cốt lõi của hệ thống mà chúng ta đang thiết kế. Tuỳ vào yêu cầu, chúng ta có thể phải quyết định: độ trễ hoặc thông lượng, hiệu suất hoặc khả năng mở rộng, tính nhất quán hoặc tính khả dụng,...
 
@@ -23,13 +23,13 @@ Nhìn chung, thiết kế hệ thống là một chủ đề mở dành cho th�
 
 ### Tính khả dụng
 
-Tính khả dụng là một trong những cách đảm bảo độ tin cậy của hệ thống. Nó có nghĩa là hệ thống phải luôn hoạt động và phản hồi lại mỗi khi có bất kỳ yêu cầu nó thực hiện bất kỳ hoạt động nào. Bất cứ khi nào người dùng tìm kiếm dịch vụ, nó phải sẵn sàng đáp ứng yêu cầu của người dùng.
+Tính khả dụng là một trong những cách đảm bảo độ tin cậy của hệ thống. Nó có nghĩa là hệ thống phải luôn hoạt động và phản hồi lại mỗi khi có nó nhận được bất kỳ yêu cầu thực hiện hành động nào. Bất cứ khi nào người dùng tìm kiếm dịch vụ, nó phải sẵn sàng đáp ứng yêu cầu của người dùng.
 
 Tính khả dụng có thể được định lượng bằng cách đo phần trăm thời gian mà các dịch vụ và chức năng của hệ thống vẫn hoạt động trong một khoảng thời gian nhất định. Người ta thường xác định "tỷ lệ phần trăm khả dụng" cho các hệ thống theo các con số 9 trong phần trăm khả dụng, như trong bảng sau:
 
 {% embed url="https://github.com/Ren0503/system-design/raw/master/concepts/assets/availability.jpeg" %}
 
-Tính khả dụng của dịch vụ thường được tăng lên khi có dự phòng. Các bản sao thường được sử dụng để cung cấp phương án dự phòng bằng cách triển khai một bản sao của cùng một máy chủ để nếu một máy chủ gặp sự cố, các bản sao sẽ thay thế nó và không ảnh hưởng đến tính khả dụng của dịch vụ.
+Tính khả dụng của dịch vụ thường được tăng lên khi sử dụng sao lưu và dự phòng. Việc triển khai bảo sao của cùng một máy chủ sẽ cải thiện tính khả dụng vì khí máy chủ gặp sự cố sẽ có các bản sao thay thế nó và không ảnh hưởng đến khả năng phục vụ của hệ thống.
 
 ### Thông lượng
 
@@ -76,18 +76,18 @@ Cơ sở dữ liệu quan hệ và cơ sở dữ liệu phi quan hệ đảm b�
 
 Chúng được coi là bốn thuộc tính quan trọng của một cơ sở dữ liệu quan hệ khi xử lý bất kỳ giao dịch nào. Nếu thiếu một trong những thuộc tính này thì tính toàn vẹn của cơ sở dữ liệu khó có thể được đảm bảo.
 
-Trong một cơ sở dư liệu quan hệ, một giao dịch là một đơn vị logic thao tác trên dữ liệu, có thể bao gồm nhiều thao tác. Chẳng hạn việc chuyển tiền từ tài khoản này sang tài khoản khác là một giao dịch, bao gồm thao tác trừ tiền một tài khoản và cộng tiền vào tài khoản kia. Các tính chất ACID trong trường hợp này sẽ đảm bảo các giao dịch được thực hiện một cách đáng tin cậy:
+Trong một cơ sở dữ liệu quan hệ, một transaction (giao dịch) là một đơn vị logic thao tác trên dữ liệu, có thể bao gồm nhiều thao tác. Chẳng hạn việc chuyển tiền từ tài khoản này sang tài khoản khác là một transaction, bao gồm thao tác trừ tiền một tài khoản và cộng tiền vào tài khoản kia. Các tính chất ACID trong trường hợp này sẽ đảm bảo các transaction được thực hiện một cách đáng tin cậy:
 
-* **Tính nguyên tố (Atomicity)**. Một giao dịch có nhiều thao tác khác biệt thì hoặc là toàn bộ các thao tác hoặc là không một thao tác nào được hoàn thành. Chẳng hạn việc chuyển tiền có thể thành công hay trục trặc vì nhiều lý do nhưng tính nguyên tố bảo đảm rằng một tài khoản sẽ không bị trừ tiền nếu như tài khoản kia chưa được cộng số tiền tương ứng.
-* **Tính nhất quán (Consistency)**. Một giao dịch hoặc là sẽ tạo ra một trạng thái mới và hợp lệ cho dữ liệu, hoặc trong trường hợp có lỗi sẽ chuyển toàn bộ dữ liệu về trạng thái trước khi thực thi giao dịch.
-* **Tính độc lập (Isolation)**. Một giao dịch đang thực thi và chưa được xác nhận phải bảo đảm tách biệt khỏi các giao dịch khác.
+* **Tính nguyên tố (Atomicity)**. Một transaction có nhiều thao tác khác biệt thì hoặc là toàn bộ các thao tác hoặc là không một thao tác nào được hoàn thành. Chẳng hạn việc chuyển tiền có thể thành công hay trục trặc vì nhiều lý do nhưng tính nguyên tố bảo đảm rằng một tài khoản sẽ không bị trừ tiền nếu như tài khoản kia chưa được cộng số tiền tương ứng.
+* **Tính nhất quán (Consistency)**. Một transaction hoặc là sẽ tạo ra một trạng thái mới và hợp lệ cho dữ liệu, hoặc trong trường hợp có lỗi sẽ chuyển toàn bộ dữ liệu về trạng thái trước khi thực thi.
+* **Tính độc lập (Isolation)**. Một transaction đang thực thi và chưa được xác nhận phải bảo đảm tách biệt khỏi các transaction khác.
 * **Tính bền vững (Durability)**. Dữ liệu được xác nhận sẽ được hệ thống lưu lại sao cho ngay cả trong trường hợp hỏng hóc hoặc có lỗi hệ thống, dữ liệu vẫn đảm bảo trong trạng thái chuẩn xác.
 
 #### BASE: Basically Available Soft State Eventual Consistency
 
 Cơ sở dữ liệu NoSQL phù hợp hơn nhiều để lưu trữ dữ liệu như nội dung bài viết, bài đăng trên các kênh xã hội, dữ liệu cần kiểm duyệt và các loại dữ liệu phi cấu trúc khác khó mà xếp vừa trong một bảng. Cơ sở dữ liệu NoSQL được xây dựng với tính linh hoạt, khả năng mở rộng và tuân theo mô hình nhất quán BASE, có nghĩa là:
 
-* **Tính khả dụng ở mức cơ bản (Basic Availability)**. Trong khi cơ sở dữ liệu đảm bảo tính khả dụng cho dữ liệu, cơ sở dữ liệu có thể không nhận được dữ liệu như mong đợi, dữ liệu có thể ở trạng thái thay đổi hoặc không nhất quán.
+* **Tính khả dụng ở mức cơ bản (Basic Availability)**. Dữ liệu được lưu trữ trong cơ sở dữ liệu phi quan hệ có thể không được đảm bảo như mong đợi, dữ liệu có thể ở trạng thái thay đổi hoặc không nhất quán.
 * **Trạng thái mềm (Soft state)**. Trạng thái của cơ sở dữ liệu có thể thay đổi theo thời gian.
 * **Tính nhất quán (Eventual consistency)**. Cơ sở dữ liệu sẽ trở nên nhất quán và dữ liệu sẽ được lan truyền khắp mọi nơi tại một thời điểm nào đó trong tương lai.
 
@@ -99,11 +99,11 @@ Trong khi thiết kế bất kỳ ứng dụng nào, người ta cần phải hi
 
 Khi dịch vụ của bạn phát triển và ngày càng có nhiều yêu cầu đến với hệ thống, thì lúc đó, dịch vụ của bạn sẽ trở nên chậm và ảnh hưởng đến hiệu suất. Cách tốt nhất để giảm thiểu điều này là mở rộng quy mô, tức là tăng tiềm năng của hệ thống. Có hai cách để làm như vậy: mở rộng theo chiều ngang và mở rộng theo chiều dọc.
 
-Mở rộng theo chiều ngang có nghĩa là mở rộng dịch vụ bằng cách thêm nhiều máy chủ hơn vào các ứng dụng của bạn để phân phối các yêu cầu. Còn, mở rộng theo chiều dọc tương ứng với việc tăng công suất hoặc năng lực của cùng một máy bằng cách nâng cấp phần cứng máy để xử lý nhiều lưu lượng truy cập.
+Mở rộng theo chiều ngang có nghĩa là mở rộng dịch vụ bằng cách thêm nhiều máy chủ hơn vào các ứng dụng của bạn để phân phối lưu lượng. Còn, mở rộng theo chiều dọc tương ứng với việc tăng công suất hoặc năng lực của cùng một máy bằng cách nâng cấp phần cứng máy để xử lý nhiều lưu lượng truy cập hơn.
 
 ### Caching
 
-Bộ nhớ đệm (caching) đảm bảo hiệu suất và giúp giảm độ trễ của hệ thống. Để làm cho ứng dụng của chúng ta nhanh hơn, thuận tiện để lưu trữ một số dữ liệu thường dùng và truy cập trong thời gian ngắn hơn để đảm bảo tốc độ của hệ thống. Bộ nhớ đệm được sử dụng để lưu trữ các phần dữ liệu nhất định này, vì vậy thay vì truy vấn cơ sở dữ liệu, dữ liệu có thể dễ dàng được tìm nạp từ bộ đệm. Tuy nhiên, với việc bổ sung bộ nhớ đệm, độ phức tạp của hệ thống sẽ tăng lên. Điều tối cần thiết là duy trì đồng bộ hóa giữa dữ liệu được lưu trữ trong ổ đĩa và bộ đệm để hệ thống có được tính nhất quán. Hơn nữa, với dung lượng giới hạn của các bộ nhớ đệm ta cần các thuật toán loại bỏ dữ liệu khác nhau như LIFO, FIFO, LRU, LFU, ..., được sử dụng để đảm bảo hiệu suất của dịch vụ.
+Bộ nhớ đệm (caching) đảm bảo hiệu suất và giúp giảm độ trễ của hệ thống. Để làm cho ứng dụng của chúng ta nhanh hơn, thuận tiện để lưu trữ một số dữ liệu thường dùng và truy cập trong thời gian ngắn hơn nhằm đảm bảo tốc độ của hệ thống. Bộ nhớ đệm được sử dụng để lưu trữ các phần dữ liệu nhất định này, thay vì truy vấn cơ sở dữ liệu, dữ liệu có thể dễ dàng được tìm nạp từ bộ đệm. Tuy nhiên, với việc bổ sung bộ nhớ đệm, độ phức tạp của hệ thống sẽ tăng lên. Điều tối cần thiết là duy trì đồng bộ hóa giữa dữ liệu được lưu trữ trong ổ đĩa và bộ đệm để hệ thống có được tính nhất quán. Hơn nữa, với dung lượng giới hạn của các bộ nhớ đệm ta cần các thuật toán loại bỏ dữ liệu khác nhau như LIFO, FIFO, LRU, LFU, ..., được sử dụng để đảm bảo hiệu suất của dịch vụ.
 
 ### Hệ thống phân tán
 

@@ -23,4 +23,7 @@ Tương tự, các ứng dụng như email, WWW đều sử dụng kiến trúc 
 Có bốn thành phần bắt buộc trong kiến trúc client-server: **client**, **server**, **bộ cân bằng tải** và **giao thức mạng**.&#x20;
 
 * **Server**: Là phần mềm chịu trách nhiệm nhận và xử lý các yêu cầu từ client. Nó thường thực thi trên một thiết bị từ xa và có thể truy cập bởi người dùng máy tính nội bộ.
+* **Bộ Cân Bằng Tải**: chịu trách nhiệm phân phối các yêu cầu đến trên nhóm server để quản lý lưu lượng và tối ưu tài nguyên sử dụng.
+* **Client**: Là phần mềm máy tính thực hiện việc nhận input và gửi yêu cầu đến server. Nó chạy ở phía thiết bị của người dùng hoặc thiết bị từ xa đế kết nối đến server. Nó là phần mềm ứng thực hiện việc yêu cầu tài nguyên hoặc dịch vụ khả dụng từ server. Vd: trình duyệt Web.
+* **Giao thức mạng**:&#x20;
 

@@ -25,5 +25,35 @@ Có bốn thành phần bắt buộc trong kiến trúc client-server: **client*
 * **Server**: Là phần mềm chịu trách nhiệm nhận và xử lý các yêu cầu từ client. Nó thường thực thi trên một thiết bị từ xa và có thể truy cập bởi người dùng máy tính nội bộ.
 * **Bộ Cân Bằng Tải**: chịu trách nhiệm phân phối các yêu cầu đến trên nhóm server để quản lý lưu lượng và tối ưu tài nguyên sử dụng.
 * **Client**: Là phần mềm máy tính thực hiện việc nhận input và gửi yêu cầu đến server. Nó chạy ở phía thiết bị của người dùng hoặc thiết bị từ xa đế kết nối đến server. Nó là phần mềm ứng thực hiện việc yêu cầu tài nguyên hoặc dịch vụ khả dụng từ server. Vd: trình duyệt Web.
-* **Giao thức mạng**:&#x20;
+* **Giao thức mạng**: mô hình client-server tuân theo theo  khuôn mẫu truyền tải thông tin request-response. Nó giao tiếp bằng giao thức TCP/IP, để phân phối dữ liệu ứng dụng thành các gói tin để có thể phân phối và quản lý luồng điều khiển qua mạng. Mỗi lần một kết nối được thiết lập trong giao thức TCP, nó sẽ được duy trì cho đến khi client và serveer hoàn tất quá trình trao đổi thông tin. Trong khi IP là một giao thức phi kết nối, ở đó mỗi đơn vị dữ liệu độc lập không có kết nối đến các đơn vị dữ liệu khác và được truyền tải trên toàn mạng Internet.
 
+{% embed url="https://github.com/Ren0503/system-design/raw/master/concepts/network-protocols/assets/advanced.png" %}
+
+### Mô hình Client Server hoạt động như thế nào?
+
+Luồng dữ liệu là vô hướng, có thể biểu diễn như một vòng tròn. Khi bắt đầu một client gửi yêu cầu lấy một vài dữ liệu và server sẽ xử lý yêu cầu và gửi phản hồi dữ liệu theo mong muốn của client thông qua một giao thức mạng. Các ứng dụng phía client không thể giao tiếp trực tiếp với nhau. Mô hình phân cấp dữ liệu trong kiến trúc client-server có thể mô tả như sau:
+
+* Client gửi yêu cầu đến server.
+* Bộ cân bằng tải sẽ định tuyến yêu cầu đến với server thích hợp.
+* Server xử lý yêu cầu và thực hiện truy vấn (đọc, tạo, xóa, sửa) lên cơ sở dữ liệu.
+* Cơ sở dữ liệu trả về dữ liệu cho server.
+* Server xử lý dữ liệu và phản hồi lại cho client.
+
+Để hiểu rõ hơn về luồng dữ liệu trong kiến trúc client-server, hãy tìm hiểu xem các trình duyệt web tương tác với server.
+
+* Người dùng nhập URL của trang web.
+* Trình duyệt gửi yêu cầu đến DNS server để tìm địa chị IP của web server.
+* DNS gửi địa chỉ IP của web server về lại cho trình duyệt.
+* Bây giờ, trình duyệt lại gửi yêu cầu HTTP/HTTPS đến địa chỉ IP của web server.
+* Web Server gửi file cần thiết cho trang web.
+* Bây giờ trình duyệt có thể hiển thị trang web.
+
+### Client-Server vs P2P
+
+{% embed url="https://github.com/Ren0503/system-design/raw/master/concepts/network-protocols/assets/compare.png" %}
+
+### Ưu điểm của mô hình Client Server
+
+**Quản lý tập trung**: nó là một hệ thống mạng tập trung, với toàn bộ dữ liệu được đặt ở một nơi duy nhất, để điều khiển các tiến trình và hoạt động. Nó có thể chia sẻ tài nguyên và dữ liệu trên các nền tảng khác nhau một cách dễ dàng, và người dùng được ủy quyền có thể truy cập đến bất kỳ file nào trong trung tâm lưu trữ tại bất kỳ thời điểm nào.
+
+**Linh động**:&#x20;
